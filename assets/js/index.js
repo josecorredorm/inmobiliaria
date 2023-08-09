@@ -48,27 +48,10 @@ const propiedadesJSON = [
       m: 500
     }
   ];
-// window.addEventListener("load",()=>buscar())
+  
 var propiedades =document.querySelector(".propiedades");
-  for (var propiedad of propiedadesJSON ){
-  propiedades.innerHTML += `
-              <div class="propiedad">
-                  <div class="img" style="background-image: url('${propiedad.src}')"></div>
-                  <section>
-                      <h5>${propiedad.name}</h5>
-                      <div class="d-flex justify-content-between">
-                          <p>Cuartos: ${propiedad.rooms}</p>
-                          <p>Metros: ${propiedad.m}</p>
-                      </div>
-                      <p class="my-3">${propiedad.description}</p>
-                      <button class="btn btn-info ">Ver más</button>
-                  </section>
-              </div>`
-  }
-
-
-
 let btn_warning = document.querySelector(".btn-warning");
+window.addEventListener("load",()=>buscar())
 btn_warning.addEventListener("click",()=>validar());
 
 function validar(){
@@ -85,9 +68,10 @@ function validar(){
     }
 }
 function buscar(valor_1=1,valor_2=300,valor_3=1){
-  for (var propiedad of propiedadesJSON ){
-    if(propiedad.rooms>=valor_3 && (valor_1<=propiedad.m<=valor_2)){
-    propiedades.innerHTML += `
+  let target = "";
+for (var propiedad of propiedadesJSON ){
+    if(propiedad.rooms>=valor_3 && valor_1<=propiedad.m && propiedad.m<=valor_2 ){
+    target += `
                 <div class="propiedad">
                     <div class="img" style="background-image: url('${propiedad.src}')"></div>
                     <section>
@@ -101,7 +85,8 @@ function buscar(valor_1=1,valor_2=300,valor_3=1){
                     </section>
                 </div>`
               }
-            }
+            }    
+  propiedades.innerHTML=target;       
 }
 
 
