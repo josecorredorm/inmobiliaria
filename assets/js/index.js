@@ -51,6 +51,7 @@ const propiedadesJSON = [
   
 var propiedades =document.querySelector(".propiedades");
 let btn_warning = document.querySelector(".btn-warning");
+var Total = document.getElementById("Total");
 window.addEventListener("load",()=>buscar())
 btn_warning.addEventListener("click",()=>validar());
 
@@ -67,10 +68,12 @@ function validar(){
     buscar(control_1,control_2,control_3)
     }
 }
-function buscar(valor_1=1,valor_2=300,valor_3=1){
+function buscar(valor_1=1,valor_2=600,valor_3=1){
   let target = "";
+  let band =0;
 for (var propiedad of propiedadesJSON ){
     if(propiedad.rooms>=valor_3 && valor_1<=propiedad.m && propiedad.m<=valor_2 ){
+    band+=1;
     target += `
                 <div class="propiedad">
                     <div class="img" style="background-image: url('${propiedad.src}')"></div>
@@ -86,7 +89,8 @@ for (var propiedad of propiedadesJSON ){
                 </div>`
               }
             }    
-  propiedades.innerHTML=target;       
+  propiedades.innerHTML=target;
+  Total.innerHTML=band; 
 }
 
 
